@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: "https://ionic-grupo08.herokuapp.com"
+  baseUrl: "https://ionic-grupo8.herokuapp.com"
 };
