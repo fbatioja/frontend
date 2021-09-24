@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-ionic">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <a class="navbar-brand" (click)="goTo('logIn')" style="cursor: pointer;">
+        <img src="../../../assets/LogoIonic.svg" alt="IONIC" width="60" height="55" class="d-inline-block">
+        <img src="../../../assets/IONICBanner.svg" alt="IONIC Brand" width="160" height="65">
+      </a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer;" (click)="goTo('album')">Álbumes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer;" (click)="goTo('cancion')">Canciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer;" (click)="goTo('logIn')">Salir</a>
+        </li>
+      </ul>
+    </div>
+    <a *ngIf="userInfo" class="nav-link nav-link-ionic" style="cursor: pointer;" (click)="showUserInfo()">{{userInfo.nombre}}</a>
+    <form class="d-flex px-3">
+      <div ngbDropdown display="dynamic">
+        <a ngbDropdownToggle class="ionic-primary position-relative" style="cursor: pointer;">
+          <i class="bi bi-bell" style="font-size: 1.6em;"></i>
+          <span *ngIf="numNotificaciones !== 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {{numNotificaciones}}
+          </span>
+        </a>
+          <div ngbDropdownMenu>
+            <h3 class="mx-5 my-2 text-center">Notificaciones</h3>
+            <div *ngIf="listNotificaciones.length===0">
+              <p class="text-center my-4 fst-italic fw-light">No tienes nuevas notificaciones</p>
+            </div>
+            <div *ngIf="listNotificaciones.length!==0">
+              <div ngbDropdownItem *ngFor="let noti of listNotificaciones" (click)="goToNotification(noti)">
+                <p class="fw-bold mb-0 mt-2">{{noti.nombreElemento}}-{{noti.nombreUsuario}}
+                </p>
+                <p class="text-break mb-1">{{noti.mensaje.substring(0,30)}}</p>
+              </div>
+              <div class="dropdown-divider"></div>
+              <a ngbDropdownItem (click)="limpiarNotificaciones()" class="text-center"> Limpiar Notificaciones</a>
+            </div>
+          </div>
+      </div>
+    </form>
+  </div>
+</nav>

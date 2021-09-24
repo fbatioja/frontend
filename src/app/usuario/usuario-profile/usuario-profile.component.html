@@ -1,0 +1,28 @@
+<div *ngIf="usuario">
+  <div *ngIf="usuario" class="d-flex flex-row bd-highlight m-3">
+    <div class="avatar-circle">
+      <span class="initials">{{this.initials}}</span>
+    </div>
+    <div class="p-2 align-self-center">
+      <h5 class="card-title">{{usuario.nombre}}</h5>
+      <ngb-rating [readonly]="true" [max]="5" [starTemplate]="t" [(rate)]="usuario.calificacion">
+
+      </ngb-rating>
+      <span class="calificacion-numerica"> {{usuario.calificacion.toFixed(1)}}</span>
+
+    </div>
+    <button type="button" class="btn-close close ms-auto align-self-start" (click)="close('Ok click')" data-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <ul class="list-unstyled mx-4">
+    <li>{{usuario.totalAlbumes}} {{usuario.totalAlbumes != 1? 'álbumes':'álbum'}}</li>
+    <li>{{usuario.totalCanciones}} {{usuario.totalCanciones != 1? 'canciones':'canción'}}</li>
+    <li>{{usuario.totalComentarios}} {{usuario.totalComentarios != 1? 'comentarios':'comentario'}}</li>
+  </ul>
+</div>
+<ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+  </span>
+</ng-template>
+
+

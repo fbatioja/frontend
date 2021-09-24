@@ -1,0 +1,30 @@
+.info-comment{
+  font-size: small;
+}
+
+.comment-initial{
+  padding-left: .5em;
+}
+
+.comment-inactive{
+  background-color: #F2F3F4;
+}
+
+.dropdown-toggle::after {
+  display:none;
+}
+
+.btn-gear:hover {
+  background-color: grey;
+  color: whitesmoke;
+  border-radius: 20px;
+}
+
+.info-comment a {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.info-comment a:hover {
+  color: #150240;
+}

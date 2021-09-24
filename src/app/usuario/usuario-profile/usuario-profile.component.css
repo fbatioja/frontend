@@ -1,0 +1,36 @@
+.avatar-circle {
+  width: 50px;
+  height: 50px;
+  background-color: #F2308B;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+.initials {
+  position: relative;
+  top: 13px; /* 25% of parent */
+  font-size: 25px; /* 50% of parent */
+  line-height: 25px; /* 50% of parent */
+  color: #fff;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: inherit;
+  color: #d3d3d3;
+}
+.full {
+  color: orange;
+}
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: orange;
+}
+.calificacion-numerica {
+  color: #6c757d;
+}

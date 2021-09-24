@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-12 mt-3 ms-3">
+    <table class="table borderless mb-0" >
+      <tbody>
+        <tr *ngFor="let comentario of comentarios; index as i" >
+          <td>
+              <p class="pb-0 mb-0" *ngIf="!editing[i]">{{comentario.comentarios}}</p>
+
+              <form #myForm="ngForm" class="my-3" autocomplete="off" [formGroup]="comentarioEdit" (ngSubmit)="sendEdit(comentarioEdit.value, comentario.id, i)" *ngIf="editing[i]">
+                <div class="input-group mb-3">
+                  <input autofocus type="text" formControlName="comentarios" class="form-control comment-inactive" id="comentariosBase" placeholder="Edita el comentario">
+                  <button class="btn btn-ionic-outline-secondary" type="button" (click)="cancelEdit(i)">
+                    <i class="bi bi-x-lg col-1"></i>
+                  </button>
+                  <button class="btn btn-ionic-outline-secondary" type="submit" [disabled]="!comentarioEdit.valid">
+                    <i class="bi bi-arrow-up-right col-1"></i>
+                  </button>
+                </div>
+                <div class="col-12 alert alert-danger" *ngIf="comentarioEdit.get('comentarios')?.hasError('maxlength') || comentarioEdit.get('comentarios')?.hasError('minlength')">
+                    Los comentarios deben tener entre 1 a 255 carácteres
+                </div>
+              </form>
+
+              <div class="d-flex flex-row-reverse text-muted info-comment">
+                <div class="p-2">
+                  <app-calificacion [id_comentario]="comentario.id" [calificaciones]="comentario.calificaciones" [id_usuario_comentario]="comentario.usuario.id"></app-calificacion>
+                </div>
+                <a class="p-2" (click)="showFormRespuesta(comentario)"><i class="bi bi-chat-left"></i> Comentar</a>
+                <a class="p-2" (click)="showRespuestas(comentario)" >
+                  {{comentario.respuestas?.length}} respuestas
+                </a>
+                <div class="p-2">Hace {{calculateDays(comentario.fecha)}}</div>
+                <a class="p-2" (click)="showUserProfile(comentario.usuario.id)">Comentado por {{comentario.usuario.nombre}}</a>
+                <div class="p-2 btn-gear" ngbDropdown display="dynamic" ngbDropdownToggle *ngIf="comentario.usuario.id===this.userId && comentario.respuestas?.length === 0"><i class="bi bi-gear" ></i>
+                <div ngbDropdownMenu>
+                    <div ngbDropdownItem (click)="editComentario(comentario.id, i)" ngbAutofocus>Editar comentario</div>
+                    <div ngbDropdownItem (click)="deleteComentario(comentario.id, i)">Eliminar comentario</div>
+                  </div>
+                </div>
+              </div>
+              <form *ngIf="comentario.verFormRespuesta" autocomplete="off" class="my-3" [formGroup]="respuestaForm" (ngSubmit)="createRespuesta(respuestaForm.value, comentario.id)">
+                <div class="input-group mb-3 w-50">
+                  <input type="text" formControlName="comentarios" class="form-control comment-inactive" id="comentarios" placeholder="Escribe un comentario...">
+                  <button class="btn btn-ionic-outline-secondary" type="submit" id="button-addon2">
+                    <i class="bi bi-arrow-up-right col-1"></i>
+                  </button>
+                </div>
+                <div class="w-50 alert alert-danger" *ngIf="respuestaForm.get('comentarios')?.hasError('maxlength')">
+                  Los comentarios no deben exceder los 255 carácteres
+               </div>
+              </form>
+              <div *ngIf="comentario.verRespuestas">
+                <app-respuesta [id_parent]="comentario?.id" [tipo_elemento]="tipo_elemento"></app-respuesta>
+              </div>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

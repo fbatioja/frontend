@@ -1,0 +1,104 @@
+<div class="container bg-light">
+
+  <div class="row">
+    <div class="col-12 text-center mb-2" >
+      <label class="fs-4 fw-bold">Canción: {{cancion?.titulo}}</label>
+      <button *ngIf="cancion" type="button" class="btn btn-outline-success btn-circle btn-lg ms-3 me-1" (click)="goToEdit()" title="Editar canción"><i class="bi bi-pencil-square"></i></button>
+      <button *ngIf="cancion" type="button" class="btn btn-outline-danger btn-circle btn-lg me-1" (click)="eliminarCancion()" title="Eliminar canción"><i class="bi bi-trash-fill"></i></button>
+      <button *ngIf="userId === cancion?.usuario" type="button" class="btn btn-outline-primary btn-circle btn-lg me-1" data-bs-toggle="modal" data-bs-target="#shareModal" title="Compartir canción"><i class="bi bi-share-fill"></i></button>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <p class="my-0"><span class="fw-bold">Duración: </span> <span class="text-capitalize">{{cancion?.minutos}}:{{cancion?.segundos}}</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <p class="my-0"><span class="fw-bold">Intérpretes: </span> <span class="text-capitalize">{{cancion?.interprete}}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <p><span class="fw-bold">Creado por: </span> <span class="text-capitalize">{{propietario}}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 mt-3 mb-2 ms-2">
+      <h5>Álbumes</h5>
+    </div>
+    <div class="col-12">
+      <table class="table table-ionic table-hover table-bordered" >
+        <thead class="table-ionic-header">
+          <tr>
+            <th scope="col" class="text-center">Título</th>
+            <th scope="col" class="text-center">Año</th>
+            <th scope="col" class="text-center">Medio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let album of cancion?.albumes" >
+            <td >{{album.titulo}}</td>
+            <td class="text-center">{{album.anio}}</td>
+            <td >{{album.medio?.llave}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <app-comentario *ngIf="cancion!=undefined" [id_elemento]="cancion?.id" tipo_elemento="CANCION" ></app-comentario>
+
+  <!-- Modal -->
+  <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="shareModalLabel">Compartir</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="clean()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="mb-3">
+              <label for="usersTxt" class="form-label">Compartir canción con</label>
+              <input type="text" class="form-control" id="usersTxt" readonly [value]="displayedUsers">
+            </div>
+            <div class="mb-3">
+              <label for="userSelect">Buscar amigo</label>
+              <input class="form-control" #userFilter (keyup)="onFilter(userFilter.value)">
+              <ul class="list-group mt-3">
+                <li *ngFor="let usuario of usuariosList; index as i;" (click)="onSelect(usuario.id)" class="list-group-item">
+                  {{usuario.nombre}}
+                </li>
+              </ul>
+              <div class="row justify-content-center">
+                <div class="col-8">
+                  <div class="alert alert-danger my-3" *ngIf="emptyUsers">
+                    Debe seleccionar mínimo un usuario para compartir la canción
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ionic-secondary" data-bs-dismiss="modal" (click)="clean()">Cancelar</button>
+          <button type="button" class="btn btn-ionic-primary" data-bs-dismiss="modal" (click)="share()" [disabled]="emptyUsers">Compartir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

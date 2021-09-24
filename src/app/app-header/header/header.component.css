@@ -1,0 +1,17 @@
+.btn-circle {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 18px;
+    line-height: 1.428571429;
+    border-radius: 25px;
+  }
+
+  .selected{
+    background-color: #ececec;
+  }
+
+  .dropdown-toggle::after {
+    display:none;
+  }

@@ -1,0 +1,33 @@
+#navegation-vertical .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  background-color: #160340;
+  color: white;
+}
+
+#navegation-vertical .nav-link {
+  color: #160340;
+}
+
+#navegation-vertical a {
+  cursor: default;
+}
+
+#navegation-vertical {
+  border: 1px solid rgba(0,0,0,.125);
+  background-color: #fff;
+  border-radius: .25rem;
+  height: 200px;
+}
+div#v-pills-tab {
+  height: inherit;
+  position: relative;
+}
+
+#v-pills-salir-tab {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+#navegation-vertical a:hover {
+  background-color: #dadada;
+}

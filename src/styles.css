@@ -1,0 +1,196 @@
+/* Branding colors */
+.sr-only {
+  display: none;
+}
+.ionic-primary {
+	color: #F2308B !important;
+}
+.ionic-secondary {
+	color: #4F328C !important;
+}
+.ionic-banner {
+	color: #150240 !important;
+}
+.ionic-body {
+	color: #C9C5D9 !important;
+}
+
+.ionic-bg-primary {
+	background-color: #F2308B !important;
+}
+.ionic-bg-secondary {
+	background-color: #4F328C !important;
+}
+.ionic-bg-banner {
+	background-color: #150240 !important;
+}
+.ionic-bg-body {
+	background-color: #C9C5D9 !important;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+/* Custom body */
+body {
+  background-color: #C9C5D9 !important;
+  padding-bottom: 60px !important;
+}
+
+/* Custom primary button */
+.btn-circle.btn-lg {
+  width: 35px;
+  height: 35px;
+  padding: 6px 0px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.42857;
+}
+
+.btn-ionic-primary {
+  color: #FFFFFF;
+  background-color: #F2308B;
+  border-color: #F2308B;
+}
+.btn-ionic-primary:hover {
+  color: #FFFFFF;
+  background-color: #F2308B;
+  border-color: #FFFFFF;
+}
+
+.btn-ionic-outline-primary {
+  color: #F2308B;
+  border-color: #F2308B;
+}
+.btn-ionic-outline-primary:hover {
+  color: #fff;
+  background-color: #F2308B;
+  border-color: #150240;
+}
+.btn-check:focus + .btn-ionic-outline-primary, .btn-ionic-outline-primary:focus {
+  box-shadow: 0 0 0 0.25rem #150240;
+}
+.btn-check:checked + .btn-ionic-outline-primary, .btn-check:active + .btn-ionic-outline-primary, .btn-ionic-outline-primary:active, .btn-ionic-outline-primary.active, .btn-ionic-outline-primary.dropdown-toggle.show {
+  color: #fff;
+  background-color: #F2308B;
+  border-color: #F2308B;
+}
+.btn-check:checked + .btn-ionic-outline-primary:focus, .btn-check:active + .btn-ionic-outline-primary:focus, .btn-ionic-outline-primary:active:focus, .btn-ionic-outline-primary.active:focus, .btn-ionic-outline-primary.dropdown-toggle.show:focus {
+  box-shadow: 0 0 0 0.25rem #150240;
+}
+.btn-ionic-outline-primary:disabled, .btn-ionic-outline-primary.disabled {
+  color: #F2308B;
+  background-color: transparent;
+}
+
+/* Custom secondary button */
+.btn-ionic-secondary {
+  color: #FFFFFF;
+  background-color: #4F328C;
+  border-color: #FFFFFF;
+}
+.btn-ionic-secondary:hover {
+  color: #FFFFFF;
+  background-color: #4F328C;
+  border-color: #C9C5D9;
+}
+
+.btn-ionic-outline-secondary {
+  color: #4F328C;
+  border-color: #4F328C;
+}
+.btn-ionic-outline-secondary:hover {
+  color: #fff;
+  background-color: #4F328C;
+  border-color: #4F328C;
+}
+.btn-check:focus + .btn-ionic-outline-secondary, .btn-ionic-outline-secondary:focus {
+  box-shadow: 0 0 0 0.25rem #150240;
+}
+.btn-check:checked + .btn-ionic-outline-secondary, .btn-check:active + .btn-ionic-outline-secondary, .btn-ionic-outline-secondary:active, .btn-ionic-outline-secondary.active, .btn-ionic-outline-secondary.dropdown-toggle.show {
+  color: #fff;
+  background-color: #4F328C;
+  border-color: #4F328C;
+}
+.btn-check:checked + .btn-ionic-outline-secondary:focus, .btn-check:active + .btn-ionic-outline-secondary:focus, .btn-ionic-outline-secondary:active:focus, .btn-ionic-outline-secondary.active:focus, .btn-ionic-outline-secondary.dropdown-toggle.show:focus {
+  box-shadow: 0 0 0 0.25rem #150240;
+}
+.btn-ionic-outline-secondary:disabled, .btn-ionic-outline-secondary.disabled {
+  color: #4F328C;
+  background-color: transparent;
+}
+
+/* Custom navbar */
+.navbar {
+  background-color: #150240 !important;
+}
+.nav-link-ionic {
+  color: #FFFFFF !important;
+  font-size: 1.5rem !important;
+}
+.nav-link-ionic:hover, .nav-link-ionic:focus {
+  color: #F2308B !important;
+}
+.navbar-ionic .navbar-brand {
+  color: #ffffff;
+}
+.navbar-ionic .navbar-brand:hover, .navbar-ionic .navbar-brand:focus {
+  color: #F2308B;
+}
+.navbar-ionic .navbar-nav .nav-link {
+  color: #FFFFFF;
+  font-size: 1.5rem;
+}
+.navbar-ionic .navbar-nav .nav-link:hover, .navbar-ionic .navbar-nav .nav-link:focus {
+  color: #F2308B;
+}
+.navbar-ionic .navbar-nav .nav-link.disabled {
+  color: #C9C5D9;
+}
+.navbar-ionic .navbar-nav .show > .nav-link,
+.navbar-ionic .navbar-nav .nav-link.active {
+  color: #F2308B;
+}
+.navbar-ionic .navbar-toggler {
+  color: #150240;
+  border-color: #150240;
+}
+.navbar-ionic .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar-light .navbar-text {
+  color: #ffffff;
+}
+.navbar-ionic .navbar-text a,
+.navbar-ionic .navbar-text a:hover,
+.navbar-ionic .navbar-text a:focus {
+  color: #150240;
+}
+
+/* Custom card */
+.card-header {
+  background-color: #150240 !important;
+  border-bottom: 4px solid #F2308B;
+  color: #ffffff;
+}
+
+.card-footer {
+  background-color: #150240 !important;
+  border-top: 4px solid #F2308B;
+  color: #ffffff;
+}
+
+/* Custom table */
+.table-ionic {
+  --bs-table-bg: #FFFFFF;
+}
+
+.table-ionic-header {
+  --bs-table-bg: #150240;
+  color: #FFFFFF;
+  border-color: #150240;
+  border-bottom: 4px solid #F2308B;
+}
