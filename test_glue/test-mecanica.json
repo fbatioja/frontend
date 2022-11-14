@@ -1,0 +1,42 @@
+{
+  "name" : "test-mecanica",
+  "description" : "",
+  "role" : "arn:aws:iam::088890451766:role/LabRole",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-088890451766-us-east-1/scripts/test-mecanica.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-088890451766-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--job-bookmark-option" : "job-bookmark-enable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-088890451766-us-east-1/temporary/"
+  },
+  "connections" : {
+    "connections" : [ "rds_postgres" ]
+  },
+  "maxRetries" : 3,
+  "allocatedCapacity" : 2,
+  "timeout" : 120,
+  "maxCapacity" : 2.0,
+  "glueVersion" : "3.0",
+  "numberOfWorkers" : 2,
+  "workerType" : "G.1X",
+  "executionClass" : "FLEX",
+  "codeGenConfigurationNodes" : "{\"node-1668441581690\":{\"ApplyMapping\":{\"Inputs\":[\"node-1668441490663\"],\"Mapping\":[{\"Dropped\":false,\"FromPath\":[\"id\"],\"FromType\":\"string\",\"ToKey\":\"measurementId\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"(right) id\"],\"FromType\":\"string\",\"ToKey\":\"(right) id\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"(right) timestamp\"],\"FromType\":\"bigint\",\"ToKey\":\"timestamp\",\"ToType\":\"bigint\"},{\"Dropped\":false,\"FromPath\":[\"(right) value\"],\"FromType\":\"double\",\"ToKey\":\"value\",\"ToType\":\"double\"}],\"Name\":\"Schema Matcher for Union\"}},\"node-1668441185205\":{\"Join\":{\"Columns\":[{\"From\":\"node-1668441066961\",\"Keys\":[[\"reference\"]]},{\"From\":\"node-1668439783865\",\"Keys\":[[\"(right) sensor\"]]}],\"Inputs\":[\"node-1668441066961\",\"node-1668439783865\"],\"JoinType\":\"equijoin\",\"Name\":\"Join Sensors\"}},\"node-1668441490663\":{\"SelectFields\":{\"Inputs\":[\"node-1668439752654\"],\"Name\":\"Select Fields\",\"Paths\":[[\"id\"],[\"(right) timestamp\"],[\"(right) value\"],[\"(right) id\"]]}},\"node-1668441394221\":{\"SelectFields\":{\"Inputs\":[\"node-1668441185205\"],\"Name\":\"Select Fields\",\"Paths\":[[\"(right) id\"]]}},\"node-1668441872827\":{\"CatalogTarget\":{\"Database\":\"rds\",\"Inputs\":[\"node-1668441779215\"],\"Name\":\"AWS Glue Data Catalog\",\"Table\":\"odc_public_data\"}},\"node-1668439752654\":{\"Join\":{\"Columns\":[{\"From\":\"node-1668439616568\",\"Keys\":[[\"phenomena\"]]},{\"From\":\"node-1668439783865\",\"Keys\":[[\"(right) measure\"]]}],\"Inputs\":[\"node-1668439616568\",\"node-1668439783865\"],\"JoinType\":\"equijoin\",\"Name\":\"Join Measurement\"}},\"node-1668439616568\":{\"PostgreSQLCatalogSource\":{\"Database\":\"rds\",\"Name\":\"Measurement\",\"Table\":\"odc_public_measurement\"}},\"node-1\":{\"S3CatalogSource\":{\"AdditionalOptions\":{},\"Database\":\"s3\",\"Name\":\"S3 bucket\",\"PartitionPredicate\":\"\",\"Table\":\"mecanica\"}},\"node-1668441779215\":{\"Join\":{\"Columns\":[{\"From\":\"node-1668441581690\",\"Keys\":[[\"(right) id\"]]},{\"From\":\"node-1668441581699\",\"Keys\":[[\"(right) id\"]]}],\"Inputs\":[\"node-1668441581690\",\"node-1668441581699\"],\"JoinType\":\"equijoin\",\"Name\":\"Join\"}},\"node-1668441066961\":{\"PostgreSQLCatalogSource\":{\"Database\":\"rds\",\"Name\":\"Sensors\",\"Table\":\"odc_public_sensor\"}},\"node-1668439783865\":{\"ApplyMapping\":{\"Inputs\":[\"node-1668438789769\"],\"Mapping\":[{\"Dropped\":false,\"FromPath\":[\"id\"],\"FromType\":\"string\",\"ToKey\":\"(right) id\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"date\"],\"FromType\":\"string\",\"ToKey\":\"(right) date\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"timestamp\"],\"FromType\":\"bigint\",\"ToKey\":\"(right) timestamp\",\"ToType\":\"bigint\"},{\"Dropped\":false,\"FromPath\":[\"sensor\"],\"FromType\":\"string\",\"ToKey\":\"(right) sensor\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"measure\"],\"FromType\":\"string\",\"ToKey\":\"(right) measure\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"value\"],\"FromType\":\"double\",\"ToKey\":\"(right) value\",\"ToType\":\"double\"}],\"Name\":\"Renamed keys for Join\"}},\"node-1668438789769\":{\"ApplyMapping\":{\"Inputs\":[\"node-1\"],\"Mapping\":[{\"Dropped\":false,\"FromPath\":[\"col0\"],\"FromType\":\"string\",\"ToKey\":\"id\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"col1\"],\"FromType\":\"string\",\"ToKey\":\"date\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"col2\"],\"FromType\":\"string\",\"ToKey\":\"timestamp\",\"ToType\":\"bigint\"},{\"Dropped\":false,\"FromPath\":[\"col3\"],\"FromType\":\"string\",\"ToKey\":\"sensor\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"col4\"],\"FromType\":\"string\",\"ToKey\":\"measure\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"col5\"],\"FromType\":\"string\",\"ToKey\":\"value\",\"ToType\":\"double\"}],\"Name\":\"Change Schema (Apply Mapping)\"}},\"node-1668441581699\":{\"ApplyMapping\":{\"Inputs\":[\"node-1668441394221\"],\"Mapping\":[{\"Dropped\":false,\"FromPath\":[\"(right) id\"],\"FromType\":\"string\",\"ToKey\":\"(right) id\",\"ToType\":\"string\"}],\"Name\":\"Schema Matcher for Union\"}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "frontend",
+    "branch" : "master",
+    "folder" : "test_glue"
+  }
+}
